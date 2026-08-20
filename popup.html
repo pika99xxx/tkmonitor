@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TK 达人推广监控器</title><link rel="stylesheet" href="popup.css"><link rel="stylesheet" href="tag-config.css"><link rel="stylesheet" href="popup-minimal-theme.css"></head>
+<body>
+  <header><div><p class="eyebrow">CREATOR RADAR</p><h1>推广视频雷达</h1><p class="sub">固定达人 · 低频巡检 · 人工确认</p></div><span id="state" class="state">待机</span></header>
+  <nav><button class="tab active" data-tab="review">待审核 <b id="pendingCount">0</b></button><button class="tab" data-tab="creators">达人名单</button><button class="tab" data-tab="all">全部视频</button></nav>
+
+  <main>
+    <section id="review" class="panel active">
+      <div class="toolbar"><button id="scanCurrent" class="primary">扫描当前达人页</button><button id="scan">开始巡检</button><button id="pauseScan">暂停</button><button id="resumeScan">继续</button><button id="restartScan">重新开始</button><button id="export">导出 CSV</button></div>
+      <div id="progress" class="progress hidden"><span></span><p></p></div>
+      <div id="videoList" class="cards"></div>
+      <div id="emptyReview" class="empty"><div>◎</div><h2>等待发现推广视频</h2><p>先在“达人名单”中加入账号和识别关键词。</p></div>
+    </section>
+
+    <section id="creators" class="panel">
+      <div class="guide"><b>达人名单</b><span>每行一个账号，不用输入 @</span></div>
+      <textarea id="creatorInput" placeholder="creator_name&#10;another_creator"></textarea>
+      <div class="tagConfig"><div><label for="tagInput">所有达人共用标签</label><input id="tagInput" placeholder="#furniture, #homedecor, #sofa"></div><div><label for="matchMode">匹配方式</label><select id="matchMode"><option value="any">满足其中之一</option><option value="all">必须满足全部</option></select></div></div>
+      <div class="toolbar"><button id="saveCreators" class="primary">保存名单</button><button id="sample">填入示例</button></div>
+      <p class="hint">只读取按真实发布时间排序的最近三条；标签不区分大小写，输入时可省略 #。</p>
+      <div id="creatorStats" class="stats"></div>
+    </section>
+
+    <section id="all" class="panel"><div class="toolbar"><select id="filter"><option value="all">全部状态</option><option value="confirmed">已确认</option><option value="pending">待审核</option><option value="ignored">已忽略</option></select><button id="clearData" class="danger">清空视频记录</button></div><div id="allList" class="cards"></div></section>
+  </main>
+  <footer><span>数据仅保存在此浏览器</span><span>遇到验证码时请手动完成</span></footer>
+  <script src="popup.js"></script>
+</body></html>

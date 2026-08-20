@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "TK 达人推广监控器",
+  "version": "0.14.2",
+  "description": "低频巡检已合作达人主页，识别疑似推广视频并保存公开数据快照。",
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "host_permissions": ["https://www.tiktok.com/*"],
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": ["https://www.tiktok.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "action": {
+    "default_title": "打开 TK 推广视频数据看板"
+  }
+}
